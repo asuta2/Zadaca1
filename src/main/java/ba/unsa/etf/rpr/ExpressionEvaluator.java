@@ -3,8 +3,8 @@ package ba.unsa.etf.rpr;
 import java.util.Stack;
 
 public class ExpressionEvaluator {
-    private Stack<Double> operandi;
-    private Stack <String> operatori;
+    private Stack<Double> operandi = new Stack<>();
+    private Stack <String> operatori= new Stack<>();
     public static boolean daLiJeBroj(String temp){
         if(temp.equals(null))
             return false;
@@ -16,10 +16,7 @@ public class ExpressionEvaluator {
         return true;
     }
     public static boolean checkZnak(String temp){
-
-        if(temp.equals("*") || temp.equals("+") || temp.equals("/") || temp.equals("-") )
-            return true;
-        return false;
+        return temp.equals("*") || temp.equals("+") || temp.equals("/") || temp.equals("-");
     }
     private double calculate(Stack<Double> a, Stack<String> b){
             double t1;
@@ -40,7 +37,6 @@ public class ExpressionEvaluator {
     }
     public double evaluate(String temp){
         String[] owo= temp.split(" ");
-        double broj=0;
         for(String x: owo)
         {
             if(daLiJeBroj(x))
@@ -50,6 +46,9 @@ public class ExpressionEvaluator {
                 operatori.push(x);
             } else if (x.equals(")")) {
                 operandi.push(calculate(operandi,operatori));
+            }else if(!x.equals("("))
+            {
+                throw new RuntimeException("Nije artimeticki validan");
             }
         }
         return operandi.pop();
