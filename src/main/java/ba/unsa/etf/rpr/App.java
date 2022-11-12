@@ -9,7 +9,9 @@ public class App
 {
     public static void main( String[] args )
     {
-        HashMap<Integer,String> a = new HashMap<>();
-        System.out.println( "Hello World!" );
+        ExpressionEvaluator temp = new ExpressionEvaluator();
+        double ispis= temp.evaluate(args[0]);
+        System.out.println(ispis);
+
     }
 }
