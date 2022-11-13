@@ -1,17 +1,22 @@
 package ba.unsa.etf.rpr;
-import java.util.HashMap;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
-    public static void main( String[] args )
+    public static void main(String[] args)
     {
         ExpressionEvaluator temp = new ExpressionEvaluator();
-        double ispis= temp.evaluate(args[0]);
+        double ispis= temp.evaluate(spoji(args));
         System.out.println(ispis);
 
+    }
+    public static String spoji(String[] args)
+    {
+        String ispis="";
+        String sp="";
+        for(String x: args) {
+            ispis = ispis + sp + x;
+            sp = " ";
+        }
+        return ispis;
     }
 }
