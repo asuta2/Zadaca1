@@ -1,3 +1,8 @@
+/**
+ * Pomoćna klasa korištena za evaluaciju artimetičkih izraza iz main klase
+ * te u slučaju pogrešnog artimetičkog izraza bacanje odgovarajućeg izuzetka.
+ */
+
 package ba.unsa.etf.rpr;
 
 import java.util.Stack;
@@ -27,7 +32,7 @@ public class ExpressionEvaluator {
                 case "*":
                     return t1 * t2;
                 case "/":
-                    return (double) t1/t2;
+                    return (double) t2/t1;
                 case "+":
                     return t1+t2;
                 case "-":
