@@ -11,7 +11,7 @@ public class ExpressionEvaluator {
     private Stack<Double> operandi = new Stack<>();
     private Stack <String> operatori= new Stack<>();
     public static boolean daLiJeBroj(String temp){
-        if(temp.equals(null))
+        if(temp.isEmpty())
             return false;
         try{
             double num= Double.parseDouble(temp);
@@ -21,11 +21,10 @@ public class ExpressionEvaluator {
         return true;
     }
     public static boolean checkZnak(String temp){
-        return temp.equals("*") || temp.equals("+") || temp.equals("/") || temp.equals("-");
+        return temp.equals("*") || temp.equals("+") || temp.equals("/") || temp.equals("-") || temp.equals("sqrt");
     }
     private double calculate(Stack<Double> a, Stack<String> b){
-            double t1;
-            t1 = a.pop();
+            double t1 = a.pop();
             double t2 = a.pop();
             String op = b.pop();
             switch (op){
@@ -37,6 +36,9 @@ public class ExpressionEvaluator {
                     return t1+t2;
                 case "-":
                     return t2-t1;
+                case "sqrt":
+                    a.push(t2);
+                    return Math.sqrt(t1);
             }
             return 0;
     }
@@ -56,6 +58,8 @@ public class ExpressionEvaluator {
                 throw new RuntimeException("Nije artimeticki validan");
             }
         }
+        if(!operatori.isEmpty())
+            throw new RuntimeException("Nije artimeticki validan");
         return operandi.pop();
     }
     }
